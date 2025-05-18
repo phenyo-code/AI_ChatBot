@@ -1,17 +1,8 @@
 <a href="https://ai-sdk-starter-groq.vercel.app">
-  <h1 align="center">Vercel x Groq Chatbot</h1>
+  <h1 align="center">Convo Chatbot</h1>
 </a>
 
-<p align="center">
-  An open-source AI chatbot app template built with Next.js, the AI SDK by Vercel, and Groq.
-</p>
 
-<p align="center">
-  <a href="#features"><strong>Features</strong></a> ·
-  <a href="#deploy-your-own"><strong>Deploy Your Own</strong></a> ·
-  <a href="#running-locally"><strong>Running Locally</strong></a> ·
-  <a href="#authors"><strong>Authors</strong></a>
-</p>
 <br/>
 
 ## Features
@@ -22,11 +13,6 @@
 - [shadcn/ui](https://ui.shadcn.com/) components for a modern, responsive UI powered by [Tailwind CSS](https://tailwindcss.com).
 - Built with the latest [Next.js](https://nextjs.org) App Router.
 
-## Deploy Your Own
-
-You can deploy your own version to Vercel by clicking the button below:
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?project-name=Vercel+x+Groq+Chatbot&repository-name=ai-sdk-starter-groq&repository-url=https%3A%2F%2Fgithub.com%2Fvercel-labs%2Fai-sdk-starter-groq&demo-title=Vercel+x+Groq+Chatbot&demo-url=https%3A%2F%2Fai-sdk-starter-groq.labs.vercel.dev%2F&demo-description=A+simple+chatbot+application+built+with+Next.js+that+uses+Groq+via+the+AI+SDK+and+the+Vercel+Marketplace&products=%5B%7B%22type%22%3A%22integration%22%2C%22protocol%22%3A%22ai%22%2C%22productSlug%22%3A%22api-key%22%2C%22integrationSlug%22%3A%22groq%22%7D%5D)
 
 ## Running Locally
 
@@ -76,8 +62,4 @@ You can deploy your own version to Vercel by clicking the button below:
 
 4. Open [http://localhost:3000](http://localhost:3000) to view your new AI chatbot application.
 
-## Authors
 
-This repository is maintained by the [Vercel](https://vercel.com) team and community contributors.
-
-Contributions are welcome! Feel free to open issues or submit pull requests to enhance functionality or fix bugs.
