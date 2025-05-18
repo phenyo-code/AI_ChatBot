@@ -1,4 +1,5 @@
 "use client";
+
 import { modelID, MODELS } from "@/ai/providers";
 import {
   Select,
@@ -19,15 +20,19 @@ export const ModelPicker = ({
   setSelectedModel,
 }: ModelPickerProps) => {
   return (
-    <div className="absolute bottom-2 left-2 flex flex-col gap-2">
+    <div className="absolute bottom-2 left-2">
       <Select value={selectedModel} onValueChange={setSelectedModel}>
-        <SelectTrigger className="">
+        <SelectTrigger className="border-blue-200 dark:border-blue-700 bg-white dark:bg-blue-800 text-blue-900 dark:text-blue-100">
           <SelectValue placeholder="Select a model" />
         </SelectTrigger>
-        <SelectContent>
+        <SelectContent className="bg-white dark:bg-blue-800 border-blue-200 dark:border-blue-700">
           <SelectGroup>
             {MODELS.map((modelId) => (
-              <SelectItem key={modelId} value={modelId}>
+              <SelectItem
+                key={modelId}
+                value={modelId}
+                className="text-blue-900 dark:text-blue-100 hover:bg-blue-100 dark:hover:bg-blue-700"
+              >
                 {modelId}
               </SelectItem>
             ))}

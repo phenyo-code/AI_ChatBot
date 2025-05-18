@@ -62,29 +62,29 @@ export function ReasoningMessagePart({
     <div className="flex flex-col">
       {isReasoning ? (
         <div className="flex flex-row gap-2 items-center">
-          <div className="font-medium text-sm">Reasoning</div>
+          <div className="font-medium text-sm text-blue-900 dark:text-blue-100">Reasoning</div>
           <div className="animate-spin">
-            <SpinnerIcon />
+            <SpinnerIcon size={16} />
           </div>
         </div>
       ) : (
         <div className="flex flex-row gap-2 items-center">
-          <div className="font-medium text-sm">Reasoned for a few seconds</div>
+          <div className="font-medium text-sm text-blue-900 dark:text-blue-100">Reasoned for a few seconds</div>
           <button
             className={cn(
-              "cursor-pointer rounded-full dark:hover:bg-zinc-800 hover:bg-zinc-200",
-              {
-                "dark:bg-zinc-800 bg-zinc-200": isExpanded,
-              },
+              "cursor-pointer rounded-full p-1 transition-colors",
+              isExpanded
+                ? "bg-blue-100 dark:bg-blue-800"
+                : "hover:bg-blue-100 dark:hover:bg-blue-800",
             )}
             onClick={() => {
               setIsExpanded(!isExpanded);
             }}
           >
             {isExpanded ? (
-              <ChevronDownIcon className="h-4 w-4" />
+              <ChevronDownIcon className="h-4 w-4 text-blue-600 dark:text-blue-400" />
             ) : (
-              <ChevronUpIcon className="h-4 w-4" />
+              <ChevronUpIcon className="h-4 w-4 text-blue-600 dark:text-blue-400" />
             )}
           </button>
         </div>
@@ -94,7 +94,7 @@ export function ReasoningMessagePart({
         {isExpanded && (
           <motion.div
             key="reasoning"
-            className="text-sm dark:text-zinc-400 text-zinc-600 flex flex-col gap-4 border-l pl-3 dark:border-zinc-800"
+            className="text-sm text-blue-700 dark:text-blue-300 flex flex-col gap-4 border-l border-blue-200 dark:border-blue-700 pl-3"
             initial="collapsed"
             animate="expanded"
             exit="collapsed"
@@ -141,10 +141,8 @@ const PurePreviewMessage = ({
           )}
         >
           {message.role === "assistant" && (
-            <div className="size-8 flex items-center rounded-full justify-center ring-1 shrink-0 ring-border bg-background">
-              <div className="">
-                <SparklesIcon size={14} />
-              </div>
+            <div className="size-8 flex items-center rounded-full justify-center ring-1 ring-blue-200 dark:ring-blue-700 bg-blue-50 dark:bg-blue-900 shrink-0">
+              <SparklesIcon size={14} className="text-blue-600 dark:text-blue-400" />
             </div>
           )}
 
@@ -161,7 +159,7 @@ const PurePreviewMessage = ({
                     >
                       <div
                         className={cn("flex flex-col gap-4", {
-                          "bg-secondary text-secondary-foreground px-3 py-2 rounded-tl-xl rounded-tr-xl rounded-bl-xl":
+                          "bg-blue-100 dark:bg-blue-800 text-blue-900 dark:text-blue-100 px-3 py-2 rounded-lg":
                             message.role === "user",
                         })}
                       >
@@ -171,22 +169,21 @@ const PurePreviewMessage = ({
                   );
                 case "tool-invocation":
                   const { toolName, state } = part.toolInvocation;
-
                   return (
                     <motion.div
                       initial={{ y: 5, opacity: 0 }}
                       animate={{ y: 0, opacity: 1 }}
                       key={`message-${message.id}-part-${i}`}
-                      className="flex flex-col gap-2 p-2 mb-3 text-sm bg-zinc-50 dark:bg-zinc-900 rounded-md border border-zinc-200 dark:border-zinc-800"
+                      className="flex flex-col gap-2 p-2 mb-3 text-sm bg-blue-50 dark:bg-blue-900 rounded-lg border border-blue-200 dark:border-blue-700"
                     >
                       <div className="flex-1 flex items-center justify-center">
-                        <div className="flex items-center justify-center w-8 h-8 bg-zinc-50 dark:bg-zinc-800 rounded-full">
-                          <PocketKnife className="h-4 w-4" />
+                        <div className="flex items-center justify-center w-8 h-8 bg-blue-100 dark:bg-blue-800 rounded-full">
+                          <PocketKnife className="h-4 w-4 text-blue-600 dark:text-blue-400" />
                         </div>
                         <div className="flex-1">
-                          <div className="font-medium flex items-baseline gap-2">
+                          <div className="font-medium flex items-baseline gap-2 text-blue-900 dark:text-blue-100">
                             {state === "call" ? "Calling" : "Called"}{" "}
-                            <span className="font-mono bg-zinc-100 dark:bg-zinc-800 px-2 py-1 rounded-md">
+                            <span className="font-mono bg-blue-100 dark:bg-blue-800 px-2 py-1 rounded-md">
                               {toolName}
                             </span>
                           </div>
@@ -194,7 +191,7 @@ const PurePreviewMessage = ({
                         <div className="w-5 h-5 flex items-center justify-center">
                           {state === "call" ? (
                             isLatestMessage && status !== "ready" ? (
-                              <Loader2 className="animate-spin h-4 w-4 text-zinc-500" />
+                              <Loader2 className="animate-spin h-4 w-4 text-blue-500 dark:text-blue-400" />
                             ) : (
                               <StopCircle className="h-4 w-4 text-red-500" />
                             )
@@ -234,8 +231,6 @@ export const Message = memo(PurePreviewMessage, (prevProps, nextProps) => {
   if (prevProps.status !== nextProps.status) return false;
   if (prevProps.message.annotations !== nextProps.message.annotations)
     return false;
-  // if (prevProps.message.content !== nextProps.message.content) return false;
   if (!equal(prevProps.message.parts, nextProps.message.parts)) return false;
-
   return true;
 });

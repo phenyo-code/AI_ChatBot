@@ -19,17 +19,17 @@ export const Input = ({
   return (
     <div className="relative w-full">
       <ShadcnInput
-        className="bg-secondary py-6 w-full rounded-xl pr-12"
+        className="w-full rounded-lg border border-blue-200 dark:border-blue-700 bg-white dark:bg-blue-800 py-3 px-4 text-blue-900 dark:text-blue-100 placeholder-blue-400 dark:placeholder-blue-300 focus:ring-2 focus:ring-blue-500"
         value={input}
         autoFocus
-        placeholder={"Say something..."}
+        placeholder="Type your message..."
         onChange={handleInputChange}
       />
       {status === "streaming" || status === "submitted" ? (
         <button
           type="button"
           onClick={stop}
-          className="cursor-pointer absolute right-2 top-1/2 -translate-y-1/2 rounded-full p-2 bg-black hover:bg-zinc-800 disabled:bg-zinc-300 disabled:cursor-not-allowed transition-colors"
+          className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full p-2 bg-blue-600 hover:bg-blue-700 transition-colors"
         >
           <div className="animate-spin h-4 w-4">
             <svg className="h-4 w-4 text-white" viewBox="0 0 24 24">
@@ -54,7 +54,7 @@ export const Input = ({
         <button
           type="submit"
           disabled={isLoading || !input.trim()}
-          className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full p-2 bg-black hover:bg-zinc-800 disabled:bg-zinc-300 disabled:cursor-not-allowed transition-colors"
+          className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full p-2 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors"
         >
           <ArrowUp className="h-4 w-4 text-white" />
         </button>

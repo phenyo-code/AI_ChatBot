@@ -14,10 +14,10 @@ export const Messages = ({
   const [containerRef, endRef] = useScrollToBottom();
   return (
     <div
-      className="flex-1 h-full space-y-4 overflow-y-auto py-8"
+      className="flex-1 h-full space-y-4 overflow-y-auto py-8 bg-transparent"
       ref={containerRef}
     >
-      <div className="max-w-xl mx-auto pt-8">
+      <div className="max-w-2xl mx-auto pt-8">
         {messages.map((m, i) => (
           <Message
             key={i}
