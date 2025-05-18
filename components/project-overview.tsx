@@ -3,7 +3,6 @@
 import NextLink from "next/link";
 import { motion } from "framer-motion";
 import { Button } from "./ui/button";
-import { ConvoIcon } from "./icons";
 
 export const ProjectOverview = () => {
   const suggestedPrompts = [
@@ -22,7 +21,6 @@ export const ProjectOverview = () => {
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="max-w-4xl w-full"
       >
-        <ConvoIcon size={72} className="mx-auto mb-6 text-blue-800 dark:text-blue-200" />
         <h1 className="text-4xl sm:text-5xl font-extrabold text-blue-900 dark:text-blue-100 mb-3">
           Welcome to Convo
         </h1>

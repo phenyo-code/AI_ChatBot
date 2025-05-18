@@ -67,7 +67,7 @@ export default function Chat() {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="sticky top-0 z-10 bg-white dark:bg-gray-900 shadow-sm"
+        className="sticky top-0 z-10 bg-white dark:bg-gray-900 "
       >
         <Header />
       </motion.div>
@@ -86,7 +86,7 @@ export default function Chat() {
               <ProjectOverview />
             </div>
           ) : (
-            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6">
+            <div className="bg-white dark:bg-gray-800 rounded-lg  p-6">
               <Messages messages={messages} isLoading={isLoading} status={status} />
               {isLoading && (
                 <div className="flex justify-center mt-4">
@@ -104,7 +104,7 @@ export default function Chat() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="sticky bottom-0 bg-white dark:bg-gray-900 py-6 px-4 shadow-t-sm"
+        className="sticky bottom-0 bg-white dark:bg-gray-900 py-6 px-4 "
       >
         <div className="w-full max-w-4xl mx-auto">
           <Textarea
