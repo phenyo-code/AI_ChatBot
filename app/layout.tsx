@@ -14,9 +14,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Vercel x Groq Chatbot",
+  title: "Convo - Intelligent Chat Companion",
   description:
-    "This starter project uses Groq with the AI SDK via the Vercel Marketplace",
+    "Convo is your AI-powered companion for sparking creativity, exploring ideas, and solving problems, built with Groq’s advanced technology.",
+  icons: {
+    icon: "/favicon.ico", // Reference to the favicon
+  },
 };
 
 export default function RootLayout({
@@ -27,10 +30,21 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white dark:bg-gray-900`}
       >
         {children}
-        <Toaster />
+        <Toaster
+          position="top-center"
+          toastOptions={{
+            style: {
+              background: "#1E40AF",
+              color: "#F3F4F6",
+              border: "1px solid #3B82F6",
+              borderRadius: "8px",
+              padding: "12px",
+            },
+          }}
+        />
       </body>
     </html>
   );
