@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import { useState, useEffect } from "react";
@@ -5,7 +6,7 @@ import { useSession, signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { Button } from "./ui/button";
-import { FiPlus, FiLoader, FiX } from "react-icons/fi";
+import { FiPlus, FiLoader } from "react-icons/fi";
 import { toast } from "sonner";
 
 interface Chat {
@@ -137,20 +138,10 @@ export const Sidebar = ({ onSelectChat, onNewChat, currentChatId, toggleSidebar 
       transition={{ duration: 0.3 }}
       className="w-full sm:w-64 bg-white dark:bg-gray-800 p-4 h-full overflow-y-auto relative shadow-md"
     >
-      {/* Close Button for Mobile */}
-      <Button
-        variant="ghost"
-        className="absolute top-4 right-4 sm:hidden text-blue-600 dark:text-blue-400 p-2"
-        onClick={toggleSidebar}
-        aria-label="Close sidebar"
-      >
-        <FiX className="h-6 w-6" />
-      </Button>
+
 
       <div className="flex flex-col gap-4 mb-4 mt-4">
-        <h2 className="text-lg font-semibold text-blue-900 dark:text-blue-100">
-          Your Chats
-        </h2>
+
         <Button
           onClick={handleNewChat}
           className="bg-blue-600 hover:bg-blue-700 text-white text-sm sm:text-base flex items-center gap-2"
