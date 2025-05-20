@@ -1,5 +1,5 @@
 <a href="https://ai-sdk-starter-groq.vercel.app">
-  <h1 align="center">Convo Chatbot</h1>
+  <h1 align="center">Lwazi Chatbot</h1>
 </a>
 
 

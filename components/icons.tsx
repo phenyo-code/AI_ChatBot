@@ -2,28 +2,16 @@ import * as React from "react";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import type { SVGProps } from "react";
 
-export const ConvoIcon = ({ size = 32, className = "" }: { size?: number; className?: string }) => {
+import { IoLogoXing } from "react-icons/io5";
+
+
+export const LwaziIcon = ({ size = 32, className = "" }: { size?: number; className?: string }) => {
   return (
-    <svg
-      height={size}
-      width={size}
-      viewBox="0 0 32 32"
-      fill="none"
+    <IoLogoXing
+      size={size}
       className={className}
       style={{ color: "currentColor" }}
-      aria-label="Convo Logo"
-    >
-      <path
-        d="M8 6C8 4.89543 8.89543 4 10 4H22C23.1046 4 24 4.89543 24 6V18C24 19.1046 23.1046 20 22 20H18L14 24V20H10C8.89543 20 8 19.1046 8 18V6Z"
-        fill="currentColor"
-        className="text-blue-900 dark:text-blue-100"
-      />
-      <path
-        d="M16 12L18 14H14L16 12Z"
-        fill="currentColor"
-        className="text-blue-600 dark:text-blue-400"
-      />
-    </svg>
+    />
   );
 };
 

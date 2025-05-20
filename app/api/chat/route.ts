@@ -1,3 +1,5 @@
+// app/api/chat/route.ts
+// This is a Next.js API route that handles chat messages and integrates with an AI model.
 import { model, modelID } from "@/ai/providers";
 import { weatherTool } from "@/ai/tools";
 import { streamText, UIMessage } from "ai";

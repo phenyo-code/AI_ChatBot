@@ -17,7 +17,7 @@ export default function About() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-white dark:bg-gray-900">
+    <div className="min-h-screen flex flex-col mt-6 bg-white dark:bg-gray-900">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
@@ -25,7 +25,7 @@ export default function About() {
         transition={{ duration: 0.6, ease: "easeOut" }}
         className="sticky top-0 z-10 bg-white dark:bg-gray-900"
       >
-        <Header />
+        <Header toggleSidebar={() => {}} isSidebarOpen={false} />
       </motion.div>
 
       {/* Main Content */}
@@ -40,7 +40,7 @@ export default function About() {
             className="text-center mb-16"
           >
             <h1 className="text-4xl sm:text-5xl font-extrabold text-blue-900 dark:text-blue-100 mb-4">
-              About Convo
+              About Lwazi
             </h1>
             <p className="text-base sm:text-lg text-blue-600 dark:text-blue-400 max-w-md mx-auto">
               Your intelligent companion for curiosity, creativity, and discovery, powered by Groq.
@@ -59,7 +59,7 @@ export default function About() {
               Our Mission
             </h2>
             <p className="text-base sm:text-lg text-blue-600 dark:text-blue-400 max-w-2xl mx-auto">
-              Convo is designed to empower users to explore the world through intelligent conversations. Whether you’re seeking answers, brainstorming ideas, or diving into complex topics, Convo provides a seamless and intuitive experience to spark inspiration and learning.
+              Lwazi is designed to empower users to explore the world through intelligent conversations. Whether you’re seeking answers, brainstorming ideas, or diving into complex topics, Lwazi provides a seamless and intuitive experience to spark inspiration and learning.
             </p>
           </motion.section>
 
@@ -72,7 +72,7 @@ export default function About() {
             className="mb-16"
           >
             <h2 className="text-2xl sm:text-3xl font-semibold text-blue-900 dark:text-blue-100 mb-6">
-              Why Convo?
+              Why Lwazi?
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {[
@@ -84,7 +84,7 @@ export default function About() {
                 {
                   title: "Versatile Conversations",
                   description:
-                    "From coding tips to creative ideas, Convo adapts to your needs, making every interaction meaningful.",
+                    "From coding tips to creative ideas, Lwazi adapts to your needs, making every interaction meaningful.",
                 },
                 {
                   title: "User-Friendly Design",
@@ -94,7 +94,7 @@ export default function About() {
                 {
                   title: "Always Evolving",
                   description:
-                    "Convo continuously improves with new features and models to keep your experience fresh.",
+                    "Lwazi continuously improves with new features and models to keep your experience fresh.",
                 },
               ].map((feature, index) => (
                 <motion.div
@@ -125,7 +125,7 @@ export default function About() {
               Powered by Groq
             </h2>
             <p className="text-base sm:text-lg text-blue-600 dark:text-blue-400 max-w-2xl mx-auto mb-6">
-              Convo is built on Groq’s advanced AI technology, delivering fast, reliable, and insightful responses. Learn more about the innovation behind Convo at{" "}
+              Lwazi is built on Groq’s advanced AI technology, delivering fast, reliable, and insightful responses. Learn more about the innovation behind Lwazi at{" "}
               <NextLink
                 target="_blank"
                 className="text-blue-600 dark:text-blue-400 hover:underline font-semibold"
@@ -160,15 +160,15 @@ export default function About() {
               Ready to Start?
             </h2>
             <p className="text-base sm:text-lg text-blue-600 dark:text-blue-400 max-w-md mx-auto mb-6">
-              Jump into a conversation with Convo and discover the possibilities.
+              Jump into a conversation with Lwazi and discover the possibilities.
             </p>
             <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
               <Button
                 asChild
                 className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg text-lg"
-                aria-label="Start chatting with Convo"
+                aria-label="Start chatting with Lwazi"
               >
-                <NextLink href="/chat">Start Chatting</NextLink>
+                <NextLink href="/">Start Chatting</NextLink>
               </Button>
             </motion.div>
           </motion.section>

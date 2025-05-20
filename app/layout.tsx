@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
+import SessionWrapper from "./SessionWrapper";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,11 +15,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Convo - Intelligent Chat Companion",
+  title: "Lwazi - Intelligent Chat Companion",
   description:
-    "Convo is your AI-powered companion for sparking creativity, exploring ideas, and solving problems, built with Groq’s advanced technology.",
+    "Lwazi is your AI-powered companion for sparking creativity, exploring ideas, and solving problems, built with Groq’s advanced technology.",
   icons: {
-    icon: "/favicon.ico", // Reference to the favicon
+    icon: "/favicon.ico",
   },
 };
 
@@ -32,7 +33,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white dark:bg-gray-900`}
       >
-        {children}
+        <SessionWrapper>{children}</SessionWrapper>
         <Toaster
           position="top-center"
           toastOptions={{
