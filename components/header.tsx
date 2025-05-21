@@ -74,9 +74,6 @@ export const Header = ({ toggleSidebar, isSidebarOpen }: HeaderProps) => {
             </span>
           ) : session?.user ? (
             <>
-              <span className="text-blue-900 dark:text-blue-100 text-sm sm:text-base truncate max-w-[120px] sm:max-w-[200px]">
-                {session.user.name || session.user.email}
-              </span>
               <Button
                 onClick={() => signOut({ callbackUrl: "/" })}
                 variant="outline"
