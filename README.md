@@ -25,7 +25,7 @@ Lwazi is a modern, responsive AI chatbot application built with Next.js, powered
 - **Error Handling**: Robust error pages and form validation for a smooth user experience.
 
 ## Tech Stack
-- **Frontend**: Next.js 14 (App Router), React, TypeScript, Tailwind CSS
+- **Frontend**: Next.js 15 (App Router), React, TypeScript, Tailwind CSS
 - **Backend**: Next.js API routes, Prisma, MongoDB
 - **Authentication**: NextAuth.js (Google OAuth, credentials provider)
 - **AI Integration**: Groq API
