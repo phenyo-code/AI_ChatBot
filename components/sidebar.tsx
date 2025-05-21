@@ -120,12 +120,6 @@ export const Sidebar = ({ onSelectChat, onNewChat, currentChatId, toggleSidebar 
         <p className="text-blue-900 dark:text-blue-100 mb-4 text-center text-sm sm:text-base">
           Sign in to save and view your chat history.
         </p>
-        <Button
-          onClick={() => signIn()}
-          className="bg-blue-600 hover:bg-blue-700 text-white text-sm sm:text-base"
-        >
-          Sign In
-        </Button>
       </div>
     );
   }

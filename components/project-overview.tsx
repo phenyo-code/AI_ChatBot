@@ -1,3 +1,4 @@
+
 /* eslint-disable react/no-unescaped-entities */
 "use client";
 
@@ -15,30 +16,46 @@ export const ProjectOverview = () => {
   ];
 
   return (
-    <div className="relative flex flex-col items-center justify-center text-center px-4 py-8 sm:py-16 min-h-[70vh] bg-white dark:bg-gray-900 ">
+    <div className="relative flex flex-col items-center justify-center text-center px-4 py-8 sm:py-16 min-h-[70vh] bg-white dark:bg-gray-900">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="w-full max-w-3xl"
       >
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-blue-900 dark:text-blue-100 mb-3">
-          Hi I'm Lwazi
-        </h1>
-        <h2 className="text-base sm:text-lg md:text-xl font-medium text-blue-700 dark:text-blue-300 mb-4 max-w-lg mx-auto">
-          Powered by{" "}
-          <NextLink
-            target="_blank"
-            className="text-blue-600 dark:text-blue-400 hover:underline font-semibold"
-            href="https://groq.com/"
-            aria-label="Visit Groq website"
-          >
-            Groq
-          </NextLink>
-        </h2>
-        <p className="text-sm sm:text-base md:text-lg text-blue-600 dark:text-blue-400 max-w-md mx-auto mb-6 sm:mb-8">
-          Your intelligent companion for exploring ideas, solving problems, and sparking creativity. Ask anything, anytime.
-        </p>
+        {session?.user ? (
+          <>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-blue-900 dark:text-blue-100 mb-3">
+              Hi, {session.user.name || session.user.email || "User"}!
+            </h1>
+            <h2 className="text-base sm:text-lg md:text-xl font-medium text-blue-700 dark:text-blue-300 mb-4 max-w-lg mx-auto">
+              Welcome back to Lwazi.
+            </h2>
+            <p className="text-sm sm:text-base md:text-lg text-blue-600 dark:text-blue-400 max-w-md mx-auto mb-6 sm:mb-8">
+              Ready to continue exploring ideas, solving problems, or sparking creativity? Jump into your dashboard or try a new prompt.
+            </p>
+          </>
+        ) : (
+          <>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-blue-900 dark:text-blue-100 mb-3">
+              Hi, I'm Lwazi
+            </h1>
+            <h2 className="text-base sm:text-lg md:text-xl font-medium text-blue-700 dark:text-blue-300 mb-4 max-w-lg mx-auto">
+              Powered by{" "}
+              <NextLink
+                target="_blank"
+                className="text-blue-600 dark:text-blue-400 hover:underline font-semibold"
+                href="https://groq.com/"
+                aria-label="Visit Groq website"
+              >
+                Groq
+              </NextLink>
+            </h2>
+            <p className="text-sm sm:text-base md:text-lg text-blue-600 dark:text-blue-400 max-w-md mx-auto mb-6 sm:mb-8">
+              Your intelligent companion for exploring ideas, solving problems, and sparking creativity. Sign in to get started.
+            </p>
+          </>
+        )}
 
         <div className="flex flex-col sm:flex-row gap-3 justify-center mb-10 sm:mb-12">
           <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>

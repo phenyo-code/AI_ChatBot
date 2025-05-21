@@ -1,4 +1,3 @@
-// app/api/chats/route.ts (POST and GET)
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "../auth/[...nextauth]/options";
@@ -27,7 +26,7 @@ export async function POST(req: Request) {
   }
 
   const invalidMessage = messages.find(
-    (msg) => !msg.role || !msg.content || typeof msg.role !== "string" || typeof msg.content !== "string"
+    (msg) => !msg.role || typeof msg.role !== "string" || typeof msg.content !== "string"
   );
   if (invalidMessage) {
     console.error("Invalid message format:", invalidMessage);
@@ -35,12 +34,18 @@ export async function POST(req: Request) {
   }
 
   try {
-    const title = messages[0].content.substring(0, 50) || "Untitled Chat";
-    console.log("Saving chat for user:", session.user.id, "with title:", title);
+    const firstMessageContent = messages[0].content.trim();
+    const title = firstMessageContent.substring(0, 50) || "Untitled Chat";
+    const preview = firstMessageContent.substring(0, 50) || "";
+    const now = new Date();
+
+    console.log("Creating chat for user:", session.user.id, "title:", title, "preview:", preview);
     const chat = await prisma.chat.create({
       data: {
         userId: session.user.id,
         title,
+        preview,
+        lastAccessed: now,
         messages: {
           create: messages.map((msg) => ({
             role: msg.role,
@@ -48,7 +53,12 @@ export async function POST(req: Request) {
           })),
         },
       },
-      include: {
+      select: {
+        id: true,
+        title: true,
+        preview: true,
+        lastAccessed: true,
+        createdAt: true,
         messages: {
           select: {
             id: true,
@@ -60,11 +70,22 @@ export async function POST(req: Request) {
       },
     });
 
-    console.log("Chat saved:", chat.id);
-    return NextResponse.json(chat, { status: 201 });
+    console.log("Chat created:", chat.id);
+    return NextResponse.json(
+      {
+        ...chat,
+        lastAccessed: chat.lastAccessed?.toISOString(),
+        createdAt: chat.createdAt.toISOString(),
+        messages: chat.messages.map((msg) => ({
+          ...msg,
+          createdAt: msg.createdAt.toISOString(),
+        })),
+      },
+      { status: 201 }
+    );
   } catch (error) {
-    console.error("Error saving chat:", error);
-    return NextResponse.json({ error: "Failed to save chat" }, { status: 500 });
+    console.error("Error creating chat:", error);
+    return NextResponse.json({ error: "Failed to create chat" }, { status: 500 });
   } finally {
     await prisma.$disconnect();
   }
@@ -82,13 +103,21 @@ export async function GET() {
       select: {
         id: true,
         title: true,
+        preview: true,
+        lastAccessed: true,
         createdAt: true,
       },
-      orderBy: { createdAt: "desc" },
+      orderBy: { lastAccessed: "desc" },
     });
 
     console.log("Chats fetched for user:", session.user.id, "count:", chats.length);
-    return NextResponse.json(chats);
+    return NextResponse.json(
+      chats.map((chat) => ({
+        ...chat,
+        lastAccessed: chat.lastAccessed?.toISOString() || null,
+        createdAt: chat.createdAt.toISOString(),
+      }))
+    );
   } catch (error) {
     console.error("Error fetching chats:", error);
     return NextResponse.json({ error: "Failed to fetch chats" }, { status: 500 });

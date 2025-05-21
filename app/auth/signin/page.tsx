@@ -1,3 +1,4 @@
+
 /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
@@ -9,6 +10,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
 import { FcGoogle } from "react-icons/fc";
+import { Sun, Moon } from "lucide-react";
 import { Suspense } from "react";
 
 function SignInContent() {
@@ -20,7 +22,26 @@ function SignInContent() {
   const [success, setSuccess] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [googleLoading, setGoogleLoading] = useState(false);
+  const [showCredentials, setShowCredentials] = useState(false);
+  const [theme, setTheme] = useState<"light" | "dark">("light");
 
+  // Theme handling
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme") as "light" | "dark" | null;
+    if (savedTheme) {
+      setTheme(savedTheme);
+      document.documentElement.classList.toggle("dark", savedTheme === "dark");
+    }
+  }, []);
+
+  const toggleTheme = () => {
+    const newTheme = theme === "light" ? "dark" : "light";
+    setTheme(newTheme);
+    document.documentElement.classList.toggle("dark", newTheme === "dark");
+    localStorage.setItem("theme", newTheme);
+  };
+
+  // Handle searchParams for success/error messages
   const callbackUrl = searchParams.get("callbackUrl") || "/";
   const urlError = searchParams.get("error");
   const verified = searchParams.get("verified");
@@ -55,7 +76,7 @@ function SignInContent() {
             `Please verify your email before signing in. ` +
               `<a href="/auth/resend-verification?email=${encodeURIComponent(
                 email
-              )}" class="text-blue-600 hover:underline">Resend verification email</a>`
+              )}" class="text-blue-600 dark:text-blue-400 hover:underline">Resend verification email</a>`
           );
         } else {
           setError(result.error);
@@ -101,6 +122,8 @@ function SignInContent() {
           />
         )}
 
+       
+
         {/* Google Sign-In Button */}
         <Button
           onClick={handleGoogleSignIn}
@@ -111,60 +134,61 @@ function SignInContent() {
           {googleLoading ? "Signing In with Google..." : "Sign In with Google"}
         </Button>
 
-        {/* Divider */}
-        <div className="relative my-6">
-          <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-gray-300 dark:border-gray-600"></div>
-          </div>
-          <div className="relative flex justify-center text-sm">
-            <span className="px-2 bg-white dark:bg-gray-800 text-gray-500 dark:text-gray-400">
-              Or continue with
-            </span>
-          </div>
-        </div>
+        {/* Toggle Credentials Form Button */}
+        <Button
+          variant="outline"
+          className="w-full text-blue-600 dark:text-blue-400 border-blue-200 dark:border-blue-700 hover:bg-blue-50 dark:hover:bg-blue-800/30 mb-6"
+          onClick={() => setShowCredentials(!showCredentials)}
+          disabled={loading || googleLoading}
+        >
+          {showCredentials ? "Hide Email Sign-In" : "Sign In with Email"}
+        </Button>
 
-        <form onSubmit={handleCredentialsSignIn} className="space-y-6">
-          <div>
-            <Label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
-              Email
-            </Label>
-            <Input
-              id="email"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="w-full p-3 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400"
-              required
+        {/* Credentials Form (Toggled) */}
+        {showCredentials && (
+          <form onSubmit={handleCredentialsSignIn} className="space-y-6">
+            <div>
+              <Label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
+                Email
+              </Label>
+              <Input
+                id="email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full p-3 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400"
+                required
+                disabled={loading || googleLoading}
+              />
+            </div>
+            <div>
+              <Label htmlFor="password" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
+                Password
+              </Label>
+              <Input
+                id="password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full p-3 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400"
+                required
+                disabled={loading || googleLoading}
+              />
+            </div>
+            <div className="text-center">
+              <Link href="/auth/forgot-password" className="text-sm text-blue-600 dark:text-blue-400 hover:underline">
+                Forgot Password?
+              </Link>
+            </div>
+            <Button
+              type="submit"
+              className="w-full bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-700 dark:hover:bg-blue-600 disabled:bg-blue-300 dark:disabled:bg-blue-800 disabled:cursor-not-allowed"
               disabled={loading || googleLoading}
-            />
-          </div>
-          <div>
-            <Label htmlFor="password" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
-              Password
-            </Label>
-            <Input
-              id="password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="w-full p-3 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400"
-              required
-              disabled={loading || googleLoading}
-            />
-          </div>
-          <div className="text-center">
-            <Link href="/auth/forgot-password" className="text-sm text-blue-600 dark:text-blue-400 hover:underline">
-              Forgot Password?
-            </Link>
-          </div>
-          <Button
-            type="submit"
-            className="w-full bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-700 dark:hover:bg-blue-600 disabled:bg-blue-300 dark:disabled:bg-blue-800 disabled:cursor-not-allowed"
-            disabled={loading || googleLoading}
-          >
-            {loading ? "Signing In..." : "Sign In"}
-          </Button>
-        </form>
+            >
+              {loading ? "Signing In..." : "Sign In"}
+            </Button>
+          </form>
+        )}
 
         <div className="mt-4 text-center text-sm text-gray-600 dark:text-gray-400">
           Don’t have an account?{" "}
@@ -179,7 +203,7 @@ function SignInContent() {
 
 export default function SignIn() {
   return (
-    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">Loading...</div>}>
       <SignInContent />
     </Suspense>
   );
