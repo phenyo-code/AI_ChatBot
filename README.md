@@ -93,13 +93,18 @@ npm run start
 
 
 
-Usage
+## Usage
 
 Home Page (/): Unauthenticated users see a welcome message with a call-to-action to sign in. Authenticated users are greeted personally (e.g., Hi, <name>!) and can navigate to their dashboard.
+
 Sign-In (/auth/signin): Log in via Google OAuth or email/password (credentials form is toggleable).
+
 Sign-Up (/auth/signup): Register a new account with email, password, and name.
+
 Dashboard (/dashboard): Authenticated users can view recent chats, start new ones, rename, or delete them.
+
 Chat (/chat?chatId=<id>): Interact with the AI chatbot, powered by Groq.
+
 Theme Toggling: Switch between light and dark modes using the toggle button in the header, sign-in page, or dashboard.
 
 ## Project Structure
