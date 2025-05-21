@@ -46,12 +46,12 @@ Before you begin, ensure you have the following installed:
    ```bash
    git clone https://github.com/your-username/lwazi.git
    cd lwazi
-
+   ```
 
 2. **Install Dependencies**:
    ```bash
       npm install
-
+    ```
 
 4. **Set Up Environment Variables**:
    Create a .env.local file in the root directory and add the following:
@@ -65,6 +65,7 @@ Before you begin, ensure you have the following installed:
     GOOGLE_CLIENT_SECRET=""
     NEXTAUTH_URL="http://localhost:3000"
     NEXTAUTH_SECRET=""
+```
 
 
 ## Configuration
@@ -79,6 +80,7 @@ Tailwind CSS: Tailwind is pre-configured in tailwind.config.js. Ensure the darkM
 Start the Development Server:
 ```bash
 npm run dev
+```
 
 The application will be available at http://localhost:3000.
 
@@ -87,6 +89,7 @@ The application will be available at http://localhost:3000.
 ```bash
 npm run build
 npm run start
+```
 
 
 
@@ -126,24 +129,9 @@ lwazi/
 ├── tsconfig.json                  # TypeScript configuration
 ├── package.json                   # Project dependencies and scripts
 ├── README.md                      # This file
+```
 
-Contributing
+## Contributing
 Contributions are welcome! To contribute:
 
-Fork the repository.
-Create a new branch:git checkout -b feature/your-feature
 
-
-Make your changes and commit:git commit -m "Add your feature"
-
-
-Push to your branch:git push origin feature/your-feature
-
-
-Open a pull request with a detailed description of your changes.
-
-Please ensure your code follows the project's coding standards, includes TypeScript type safety, and adds tests where applicable.
-License
-This project is licensed under the MIT License. See the LICENSE file for details.
-Contact
-For questions or support, contact the project maintainer:
